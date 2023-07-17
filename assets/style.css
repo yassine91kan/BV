@@ -1,0 +1,156 @@
+body{
+
+	margin-left:0px;
+	margin-top:0px;
+
+}
+
+
+#navBody{
+
+	padding:0;
+	margin:0;
+	display:flex;
+	flex-direction:row;
+	justify-items: flex-start;
+}
+
+
+.top-items{
+
+	
+	display:flex;
+	flex-direction:row;
+	list-style-type: none;
+	gap:10px;
+	color:white;
+	opacity:0;
+}
+
+.side-items{
+
+	
+	display:flex;
+	flex-direction:column;
+	list-style-type: none;
+	gap:10px;
+	color:white;
+	text-decoration: none;
+	
+}
+
+.side-item{
+
+	
+	text-decoration: none;
+	color:white;
+	font-family: 'Roboto', sans-serif;
+	font-weight:300;
+	
+}
+
+
+.side-items-holder{
+
+	background-color: #075697;
+	max-width:250px;
+	margin-top:0px;
+	padding-top:20px;
+	padding-bottom:20px;
+	min-height:600px;
+	padding-left:10px;
+	padding-right:10px;
+	
+}
+
+ul li{
+
+	transition: 250 ms;
+	width:100%;
+	transition: all 0.25s ease-out;
+
+}
+
+ul li:hover{
+
+	background-color: #00ABEA;
+
+}
+
+
+.body-wrapper{
+	
+display:flex;
+flex-direction:row;
+
+	
+}
+
+#canvas{
+
+	
+
+
+}
+
+
+#center{
+
+font-weight:400;
+
+}
+
+.controls{
+
+	background-color: #00ABEA;
+	min-height:200px;
+	padding:20px;
+
+}
+
+.control-text{
+
+	font-size:14px;
+	font-family: 'Roboto', sans-serif;
+	font-weight:300;
+
+}
+
+#mybutton{
+
+	font-family: 'Roboto', sans-serif;
+	font-weight:300;
+	padding:10px;
+	border-radius:5px;
+	z-index:9000;
+}
+
+
+h2{
+	font-size:15px;
+}
+
+h2:hover{
+	cursor:pointer;
+}
+
+
+p{
+
+	font-family: 'Roboto', sans-serif;
+	font-weight:300;	
+/*	transform:translateX(100px);	*/
+
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#file-input {
+  z-index: 1;
+  position: absolute;
+}
