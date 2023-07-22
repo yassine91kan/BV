@@ -199,4 +199,4 @@
 } )();
 
 
-export default CSS2DRenderer ; 
+export default {CSS2DRenderer,CSS2DObject} ; 

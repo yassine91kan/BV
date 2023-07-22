@@ -1,4 +1,4 @@
-//import {three} from 'https://unpkg.com/three@0.87.1/build/three.js';
+import * as THREE from 'three';
 
 
 

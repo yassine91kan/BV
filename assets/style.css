@@ -138,8 +138,9 @@ h2:hover{
 p{
 
 	font-family: 'Roboto', sans-serif;
-	font-weight:300;	
-/*	transform:translateX(100px);	*/
+	font-weight:300;
+	color:white;	
+	transform:translateX(100px);	
 
 }
 
@@ -153,4 +154,17 @@ p{
 #file-input {
   z-index: 1;
   position: absolute;
+}
+
+.tooltip{
+	background-color: black;
+	padding:5px;
+	font-size: 10px;
+	z-index:-10;
+}
+
+img{
+
+	max-height: 65px;
+
 }
