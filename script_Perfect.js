@@ -379,10 +379,10 @@ async function init() {
   const file = new File(properties, 'properties');
   const link = document.createElement('a');
   document.body.appendChild(link);
-  link.href = URL.createObjectURL(file);
-  link.download = 'properties.json';
-  link.click();
-  link.remove();
+  // link.href = URL.createObjectURL(file);
+  // link.download = 'properties.json';
+  // link.click();
+  // link.remove();
 };
 
 // Cannon.js Code

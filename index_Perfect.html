@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B&V - GEN AI COMPETITION</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="icon" href="./favicon.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- <script src="https://unpkg.com/three@0.87.1/build/three.js"></script> -->
+<!-- <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script> -->
+
+
+
+
+  </head>
+  <body>
+     <nav id="navBody" class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background: linear-gradient(to right,#00ABEA,#075697,#454F68);">
+
+        <div class="navbar-image">
+         
+            <img style="z-index:100000; position:absolute;margin-left:5px;" src="./assets/BV-logo.jpg">
+          </div>   
+            
+
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="top-items-holder">
+            <ul class="top-items">
+                <li id="dashboardMenu" class="selected">  
+                    <a href="https://www.bvsafe.com/Home/Dashboard"><i class="fa fa-fw fa-dashboard"></i> H&S Incidences</a>
+                </li>
+
+                <li id="dashboardMenu" class="">  
+                    <a href="https://www.bvsafe.com/Home/"><i class="fa fa-fw fa-dashboard"></i> Hard Hat</a>
+                </li>
+
+                <li id="dashboardMenu" class="">  
+                    <a href="https://www.bvsafe.com/Home/"><i class="fa fa-fw fa-dashboard"></i> No Hard Hat</a>
+                </li>
+
+
+            <li id="companyMenu" class="">
+                <a href="https://www.bvsafe.com/Company/Index?status=MenuTab"><i class="fa fa-fw fa-building"></i> Company</a>
+            </li>
+            <li id="roMenu" class="" onclick="javascript:window.localStorage.setItem(&#39;activetabforCommandCenter&#39;, &#39;#first&#39;);">
+                <a href="https://www.bvsafe.com/CommandCenter/CommandCenterDashboard"><i class="fa fa-fw fa-align-center"></i> Command Center</a>
+            </li>
+               
+
+        
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- /#wrapper -->
+
+    </nav>
+
+
+<div class="body-wrapper">
+                            
+	<div class="side-items-holder">
+
+	<a id="center" class="side-item" href=""><i class="fa fa-fw fa-dashboard"></i> Simulation Center</a>
+
+            <ul class="side-items">
+                <li id="dashboardMenu" class="selected">
+                    
+                    <h2 class="side-item" id="linkanimate"> H&S Simulation</h2>
+                </li>
+            <li id="companyMenu" class="">
+                <h2 class="side-item" id="textanimate">H&S Incident Analytics</a>
+            </li>
+
+            <li id="companyMenu" class="">
+                <h2 class="side-item" id="still">Hard Hat</a>
+            </li>
+
+            <li id="companyMenu" class="">
+                <h2 class="side-item" id="hard"> No Hard Hat</a>
+            </li>
+
+                <h2 class="side-item" id="stop"> Stop</a>
+            </li>
+           
+               
+    
+            </ul>
+
+        </div>
+
+    <div id="canvas-holder">
+
+	<canvas id="canvas">
+
+
+
+    </canvas>  
+
+
+     </div>	
+
+
+</div> 
+
+
+
+
+<script src="./script.js" type="module"></script>
+
+
+<div> 
+
+   <h1></h1>
+   <input type="file" name="load" id="file-input" />
+    <canvas id="three-canvas"></canvas>
+
+
+</div>
+
+
+    <script src="src/bundle.js"></script>
+
+
+<div> 
+
+   <h1></h1>
+   <input type="file" name="load" id="file-input-2" />
+    <div id="viewer-container"></div>
+
+
+</div>
+
+
+
+
+  </body>
+</html>

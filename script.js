@@ -99,7 +99,7 @@ scene.background = new THREE.Color(0x555555); // set the background color to gre
 // create the camera  
 var camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);  
 // Position the camera
-camera.position.set(-5,2,0);
+camera.position.set(-50,2,50);
 
 
 // Add the CSS2DRenderer
@@ -388,9 +388,20 @@ const groundMesh = new THREE.Mesh(groundGeo, groundMat);
 groundMesh.position.set(0, 0, -20);
 scene.add(groundMesh);
 
+const groundBox = new THREE.BoxGeometry(100, 3, 100);
+const groundBoxMat = new THREE.MeshBasicMaterial({ 
+	color: 0xFF5733,
+	side: THREE.DoubleSide,
+	wireframe: false 
+ });
+const groundBoxMesh = new THREE.Mesh(groundBox, groundBoxMat);
+groundMesh.position.set(0, 0, -20);
+scene.add(groundBoxMesh);
+
 const boxGeo = new THREE.BoxGeometry(30, 1, 1.5);
 const boxMat = new THREE.MeshBasicMaterial({
-	color: 0x555555,
+	// color: 0x555555,
+  color: 0xffffff,
 	wireframe: true
 });
 const boxMesh = new THREE.Mesh(boxGeo, boxMat);
@@ -398,7 +409,7 @@ boxMesh.position.set(10, 45, -32);
 scene.add(boxMesh);
 
 const world = new CANNON.World({
-  gravity: new CANNON.Vec3(9.81, -9.81, 9.81)
+  gravity: new CANNON.Vec3(0, -9.81, 0)
 });
 
 const groundBody = new CANNON.Body({
@@ -413,13 +424,25 @@ groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
 
 const boxPhysMat = new CANNON.Material();
 
-const boxBody = new CANNON.Body({
+let boxBody = new CANNON.Body({
   mass: 1,
   shape: new CANNON.Box(new CANNON.Vec3(1, 1, 1)),
   position: new CANNON.Vec3(0, 45, -31),
   material: boxPhysMat
 });
 world.addBody(boxBody);
+
+// Create Bounding boxes to measure distances between Objects
+
+const cubebb= new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+cubebb.setFromObject(boxMesh);
+let target = groundMesh.position.clone();
+
+const groundbb = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+groundbb.setFromObject(groundBoxMesh);
+
+
+//
 
 
 // Add the GLTF Model for the crane 
@@ -447,6 +470,106 @@ loader4.load(
   }
 );
 
+
+// Animation Variables
+
+let speed =0, maxSpeed=1, acceleration = 0.25 , angle =0 ;
+
+
+//
+
+
+
+
+
+// Animation Functions
+
+  document.onkeydown = (event) => {
+
+    console.log(event);
+
+    switch(event.key){
+
+        case "ArrowLeft":
+          angle+= (Math.PI/180); //Turn left 1 degree converted to radians
+
+        break;
+
+        case "ArrowRight":
+          angle-= (Math.PI/180); //Turn left 1 degree converted to radians
+
+        break;
+
+        case "ArrowUp":
+          speed-= acceleration;
+
+        break;
+
+        case "ArrowDown":
+          speed+= acceleration;
+        break;
+
+
+    }
+
+    
+  }
+
+  function moveSpeeder (){
+
+    if(speed>maxSpeed) speed =maxSpeed ;
+
+    if(speed<0) speed =0 ;
+
+    // boxBody.position.y-=speed;
+
+    boxBody.position.y+=speed;
+
+
+    boxBody.quaternion.setFromEuler(0, angle, 0);
+
+
+  }
+
+const span1 = document.getElementById("distance");
+const speed1 = document.getElementById("speedDisp");
+
+let distance ;
+
+  function updateDistance(){
+
+    distance = (Math.round(cubebb.distanceToPoint(target)*10)/10).toFixed(1);
+    span1.innerText = "Distance to Target \n " + distance + "m";
+    speed1.innerText = "Speed  " + speed + "m/s";
+
+  }
+
+  function animation1(){
+
+    console.log("Intersected");
+    groundBoxMesh.material.transparent = true;
+    // groundBoxMesh.material.opacity = 0.2;
+    // groundBoxMesh.material.color = new THREE.Color(Math.random()*0xffffff);
+  }
+
+  function checkCollision(){
+
+    if(cubebb.intersectsBox(groundbb)){
+
+      animation1();
+
+    }
+
+    else{
+
+      groundBoxMesh.material.opacity = 1;
+
+    }
+
+
+
+
+  }
 
 
 
@@ -481,34 +604,22 @@ function animate() {
 
 
     const a = new THREE.Vector3( boxBody.position.x, boxBody.position.y-45, boxBody.position.z );
-    console.log(a);
+    // console.log(a);
 
-    console.log(boxBody.position);
+    // console.log(boxBody.position);
     model4.position.copy(a);
     model4.quaternion.copy(boxBody.quaternion);
 
-  
-    // make the ball fall  
-  // if (ball.position.y > posref - 0.2) { // check if ball is above box  
-     
-  //    ball.position.y -= 0.1;  
+    cubebb.copy(boxMesh.geometry.boundingBox).applyMatrix4(boxMesh.matrixWorld);
 
-  //   //  t-= 0.1
+    updateDistance();
 
-  //   //  model4.position.setX(t);
+    moveSpeeder();
 
-  //  } 
-  
-  //  else {  
+    checkCollision();
 
-    
+    // console.log(clock.getElapsedTime());
 
-  //     ball.position.y = posref - 0.2; // set ball position to top of box 
-  //  ball.position.x +=0.1; // set ball position to top of box
-  //    ball.position.y -=0.1; // set ball position to top of box
-  //    mixer.update(clock.getDelta()); 
-     
-  //  }  
   
 }
 
